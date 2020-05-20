@@ -6,7 +6,7 @@ ENV pip_packages "ansible pyopenssl"
 # Install dependencies.
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
-       locales \
+       locales dirmngr curl \
        python-software-properties \
        software-properties-common \
        python-setuptools \
