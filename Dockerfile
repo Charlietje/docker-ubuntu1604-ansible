@@ -30,7 +30,7 @@ RUN chmod +x initctl_faker && rm -fr /sbin/initctl && ln -s /initctl_faker /sbin
 # Install Ansible inventory file.
 RUN mkdir -p /etc/ansible
 RUN echo "[local]\nlocalhost ansible_connection=local" > /etc/ansible/hosts && \
-    echo -e "[defaults]\nstrategy_plugins = $(pip list -v | grep mitogen | awk '{print $3  "/ansible_mitogen/plugins/strategy"}')\nstrategy = mitogen_linear" > /etc/ansible/ansible.cfg
+    echo "[defaults]\nstrategy_plugins = $(pip3 show mitogen | grep Location | cut -d' ' -f2)/ansible_mitogen/plugins/strategy\nstrategy = mitogen_linear" > /etc/ansible/ansible.cfg
 
 # Remove unnecessary getty and udev targets that result in high CPU usage when using
 # multiple containers with Molecule (https://github.com/ansible/molecule/issues/1104)
